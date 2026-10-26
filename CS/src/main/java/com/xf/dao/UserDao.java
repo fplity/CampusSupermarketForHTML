@@ -32,6 +32,9 @@ public class UserDao {
             ps.setString(3, user.getTel());
             return ps.executeUpdate();
         } catch (SQLException e) {
+            if (e.getErrorCode() == 1062) {
+                return 0;
+            }
             throw new RuntimeException(e);
         }
     }

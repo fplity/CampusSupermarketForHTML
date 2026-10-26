@@ -1,0 +1,7 @@
+target/
+.idea/
+*.iml
+app/*.jar
+database.local.properties
+.env
+*.log

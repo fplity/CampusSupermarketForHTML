@@ -18,10 +18,15 @@ public class ShoppingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=utf-8");
+        resp.setContentType("application/json;charset=utf-8");
         resp.setHeader("Access-Control-Allow-Origin", "*");
 
         String op = req.getParameter("op");
+        if (op == null) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().print("0");
+            return;
+        }
         switch (op) {
             case "getAll":
                 getAll(req, resp);

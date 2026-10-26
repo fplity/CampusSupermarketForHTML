@@ -20,6 +20,11 @@ public class UserServlet extends HttpServlet {
         resp.setHeader("Access-Control-Allow-Origin", "*");
 
         String op = req.getParameter("op");
+        if (op == null) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().print("缺少 op 参数");
+            return;
+        }
         switch (op) {
             case "login":
                 login(req, resp);

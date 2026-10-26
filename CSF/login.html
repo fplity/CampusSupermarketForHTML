@@ -233,7 +233,9 @@
 
 <script src="axios.js"></script>
 <script>
-    const API_BASE = "http://127.0.0.1:8080/webapp";
+    const API_BASE = /^https?:$/.test(location.protocol) && location.pathname.startsWith("/webapp/")
+        ? location.origin + "/webapp"
+        : "http://127.0.0.1:8080/webapp";
     const account = document.querySelector("#account");
     const password = document.querySelector("#password");
 
@@ -259,7 +261,7 @@
                 alert("账号或密码错误");
             }
         } catch (e) {
-            alert("连接服务器失败，请确认 Tomcat 已启动");
+            alert("连接服务失败，请确认后台服务已启动");
         }
     };
 </script>
